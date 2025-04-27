@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Kiru Ji!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #ffe6f0, #ffffff);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff3399;
+      font-size: 48px;
+      margin-top: 20px;
+    }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 300px;
+      margin: 20px auto;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: none;
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+    }
+
+    audio {
+      display: block;
+      margin: 20px auto;
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #ff3399;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    #hiddenMessage {
+      display: none;
+      text-align: center;
+      font-size: 24px;
+      color: #ff3399;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .typewriter {
+      color: #ff66b2;
+      font-size: 24px;
+      text-align: center;
+      margin-top: 30px;
+      min-height: 50px;
+    }
+
+    .heart {
+      width: 15px;
+      height: 15px;
+      background-color: pink;
+      position: absolute;
+      top: 100%;
+      left: calc(10% + 80% * var(--i));
+      animation: floatUp 10s linear infinite;
+      opacity: 0.7;
+      clip-path: polygon(50% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Happy Birthday Kiru Ji!👑</h1>
+
+  <div class="slideshow-container">
+    <img class="slides" src="photo1.jpg" alt="Photo 1">
+    <img class="slides" src="photo2.jpg" alt="Photo 2">
+    <img class="slides" src="photo3.jpg" alt="Photo 3">
+    <!-- Add more photos if you want -->
+  </div>
+
+  <audio controls>
+    <source src="message.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="button-container">
+    <button onclick="showMessage()">Click for a Surprise!</button>
+  </div>
+
+  <div id="hiddenMessage">
+    OR BABY AP SIRF MERE KIRU HO OR KISI KE NAHI BECAUSE YOU'RE MINE ONLY😼
+  </div>
+
+  <div class="typewriter" id="typewriterText"></div>
+
+  <!-- Floating Hearts -->
+  <script>
+    for (let i = 0; i < 20; i++) {
+      let heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.setProperty('--i', Math.random());
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+      heart.style.opacity = Math.random();
+      document.body.appendChild(heart);
+    }
+  </script>
+
+  <!-- Slideshow Script -->
+  <script>
+    let slideIndex = 0;
+    showSlides();
+    function showSlides() {
+      let slides = document.getElementsByClassName("slides");
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}    
+      slides[slideIndex-1].style.display = "block";  
+      setTimeout(showSlides, 2000);
+    }
+  </script>
+
+  <!-- Hidden Message Script -->
+  <script>
+    function showMessage() {
+      var message = document.getElementById("hiddenMessage");
+      message.style.display = "block";
+    }
+  </script>
+
+  <!-- Typewriter Script -->
+  <script>
+    const messages = [
+      "Wishing you all the happiness in the world!😌",
+      "You are my sunshine, my happiness!🌞",
+      "I am so lucky to have you, Kiru ji!🥹",
+      "Today is your day, my love!🥳",
+      "I love you more than words can say!😽"
+    ];
+
+    let messageIndex = 0;
+    let charIndex = 0;
+    let currentMessage = "";
+    let isDeleting = false;
+    const typewriter = document.getElementById("typewriterText");
+
+    function type() {
+      if (messageIndex >= messages.length) {
+        messageIndex = 0;
+      }
+      currentMessage = messages[messageIndex];
+
+      if (!isDeleting) {
+        typewriter.textContent = currentMessage.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === currentMessage.length) {
+          isDeleting = true;
+          setTimeout(type, 1500);
+          return;
+        }
+      } else {
+        typewriter.textContent = currentMessage.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          messageIndex++;
+        }
+      }
+      setTimeout(type, isDeleting ? 50 : 100);
+    }
+    type();
+  </script>
+
+</body>
+</html>
